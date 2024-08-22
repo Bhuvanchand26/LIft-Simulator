@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="title">RDS Lift Simulator</h1>
+    </header>
+
+    <div class="flexbox-container">
+        <div class="Instructions">
+        <h1>Instructions: </h1>
+        <br>
+        <h3>1. Input the number of floors and lifts to stimulate and START. </h3>
+        <h3>2. Click "Up" and "down" to call the lift to that particular floor. </h3>
+        </div>
+
+        <div class="inputs">
+            <form id="input-form">
+                <p>Enter the number of floors</p>
+                <input type="number" placeholder="Number of floors" class="floor-input" min="1">
+                <p>Enter the number of lifts</p>
+                <input type="number" placeholder="Number of lifts" class="lift-input" min="1">
+            </form>
+            <button id="start-button">Start</button>
+        </div>
+    </div>
+    <div class="simulator-Container">
+
+    </div>
+    
+  <script src="script.js"></script>
+</body>
+</html>
+
