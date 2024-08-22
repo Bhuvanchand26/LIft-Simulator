@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.title {
+    margin: 0;
+    font-size: 24px;
+}
+
+.flexbox-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+}
+
+.Instructions {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.Instructions h1 {
+    font-size: 22px;
+}
+
+.inputs {
+    flex: 1;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.inputs p {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.floor-input, .lift-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#start-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#start-button:hover {
+    background-color: #0056b3;
+}
+
+.simulator-Container {
+    margin: 20px;
+    border: 2px solid #ccc;
+    min-height: 600px;
+    position: relative;
+    background-color: #eaeaea;
+}
+
+.floor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    height: 100px;
+    position: relative;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200px;
+    
+}
+
+.controls-container span {
+    font-weight: bold;
+    margin-right: 20px;
+    
+}
+
+.controls-container button{
+    margin: 1px;
+}
+
+.upBtn, .downBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.upBtn:hover, .downBtn:hover {
+    background-color: #0056b3;
+}
+
+.lifts-container {
+    position: absolute;
+    left: 220px;
+    display: flex;
+    gap: 20px;
+    bottom: 0;
+}
+
+.lift {
+    width: 80px;
+    height: 90px;
+    background-color: #007bff;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.lift-door {
+    width: 50%;
+    height: 100%;
+    background-color: #343a40;
+    transition: transform 1s ease-in-out;
+}
+
+.left-door {
+    transform: translateX(0);
+}
+
+.right-door {
+    transform: translateX(0);
+}
+
+.lift-door.open.left-door {
+    transform: translateX(-100%);
+}
+
+.lift-door.open.right-door {
+    transform: translateX(100%);
+}
+
+.lifts-container {
+    position: absolute;
+    display: flex;
+    gap: 15px;
+    left: 220px;
+    bottom: 0;
+}
