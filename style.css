@@ -88,16 +88,14 @@ header {
     justify-content: flex-start;
     align-items: center;
     width: 200px;
-    
 }
 
 .controls-container span {
     font-weight: bold;
     margin-right: 20px;
-    
 }
 
-.controls-container button{
+.controls-container button {
     margin: 1px;
 }
 
@@ -119,7 +117,7 @@ header {
     left: 220px;
     display: flex;
     gap: 20px;
-    bottom: 0;
+    bottom: 0; 
 }
 
 .lift {
@@ -138,7 +136,7 @@ header {
     width: 50%;
     height: 100%;
     background-color: #343a40;
-    transition: transform 1s ease-in-out;
+    transition: transform 2.5s ease-in-out;
 }
 
 .left-door {
@@ -155,12 +153,4 @@ header {
 
 .lift-door.open.right-door {
     transform: translateX(100%);
-}
-
-.lifts-container {
-    position: absolute;
-    display: flex;
-    gap: 15px;
-    left: 220px;
-    bottom: 0;
 }

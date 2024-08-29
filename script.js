@@ -5,15 +5,17 @@ start.addEventListener("click", function () {
   const lifts = parseInt(document.querySelector(".lift-input").value);
   const container = document.querySelector(".simulator-Container");
 
-  if (isNaN(floors) || isNaN(lifts) || floors < 1 || lifts < 1) {
+  if (isNaN(floors) || isNaN(lifts) || floors < 0 || lifts < 1) {
     alert("Please enter valid numbers for floors and lifts.");
     return;
   }
-  if (floors == 1) {
-    alert("For 1 floor we donot need a lift bro");
-    return;
-  }
 
+  // Check if only floor 0 is present or only one lift
+  if (floors === 0) {
+    alert("for floor 0, No lift is required ");
+    return;
+
+  }
   container.innerHTML = "";
   initializeBuilding(floors, lifts, container);
 });
@@ -25,7 +27,7 @@ let floorServiced = [];
 
 function initializeBuilding(floors, lifts, container) {
   // Initialize the building with floors and lifts
-  for (let i = floors; i > 0; i--) {
+  for (let i = floors; i >= 0; i--) { // Start from floor 0
     const floorDiv = document.createElement("div");
     floorDiv.classList.add("floor");
     floorDiv.dataset.floor = i;
@@ -34,25 +36,25 @@ function initializeBuilding(floors, lifts, container) {
     floorControls.classList.add("controls-container");
     floorControls.innerHTML = `
       <span>Floor ${i}</span>
-      ${i < floors ? `<button class="upBtn" data-floor="${i}">↑ </button>` : ""}
-      ${i > 1 ? `<button class="downBtn" data-floor="${i}">↓</button>` : ""}
+      ${i < floors ? `<button class="upBtn" data-floor="${i}">↑</button>` : ""}
+      ${i > 0 ? `<button class="downBtn" data-floor="${i}">↓</button>` : ""}
     `;
     floorDiv.appendChild(floorControls);
 
-    if (i === 1) {
+    if (i === 0) { // Change from floor 1 to floor 0
       const liftsContainer = document.createElement("div");
       liftsContainer.classList.add("lifts-container");
       for (let j = 0; j < lifts; j++) {
         const liftDiv = document.createElement("div");
         liftDiv.classList.add("lift");
-        liftDiv.dataset.lift = j + 1; // as j startes from 0
-        liftDiv.dataset.currentFloor = 1;
+        liftDiv.dataset.lift = j + 1; // as j starts from 0
+        liftDiv.dataset.currentFloor = 0; // Set current floor to 0
         liftDiv.innerHTML = `
           <div class="lift-door left-door"></div>
           <div class="lift-door right-door"></div>
         `;
         liftsContainer.appendChild(liftDiv);
-        liftsPositionArray.push(1); // All lifts start from the ground floor.
+        liftsPositionArray.push(0); // All lifts start from the ground floor (0).
         liftsAvailableArray.push(true); // All lifts start as available.
       }
       floorDiv.appendChild(liftsContainer);
@@ -60,8 +62,8 @@ function initializeBuilding(floors, lifts, container) {
     container.appendChild(floorDiv);
   }
 
-  for (let i = 1; i <= floors; i++) {
-    floorServiced[i] = false; // Lifts havent serviced to any floor.
+  for (let i = 0; i <= floors; i++) { // Adjust to include floor 0
+    floorServiced[i] = false; // Lifts haven't serviced any floor.
   }
   document.querySelectorAll(".upBtn, .downBtn").forEach((button) => {
     button.addEventListener("click", function () {
@@ -75,7 +77,7 @@ function askForLift(requestedFloor) {
   if (!floorServiced[requestedFloor]) {
     requestedLiftArray.push(requestedFloor);
     getaLift();
-    floorServiced[requestedFloor] = true; // Marking as that particluar floor has a lift
+    floorServiced[requestedFloor] = true; // Mark that a lift has been requested
   }
 }
 
@@ -119,7 +121,7 @@ function moveLift(from, to) {
   liftsAvailableArray[from] = false; // Mark lift as busy
 
   liftElement.style.transition = `transform ${travelTime}s linear`;
-  liftElement.style.transform = `translateY(-${floorHeight * (to - 1)}px)`;
+  liftElement.style.transform = `translateY(-${floorHeight * to}px)`; // Adjust for floor 0
 
   setTimeout(() => {
     liftsPositionArray[from] = to; // Update lift position
@@ -127,9 +129,11 @@ function moveLift(from, to) {
 
     setTimeout(() => {
       closeLiftDoors(liftElement);
-      liftsAvailableArray[from] = true; // Mark lift as available
-      floorServiced[to] = false;
-      getaLift(); // Process the next request in the queue
+      setTimeout(() => {
+        liftsAvailableArray[from] = true; // Mark lift as available
+        floorServiced[to] = false;
+        getaLift();
+      }, 2500);
     }, 2500); // Doors stay open for 2.5 seconds
   }, travelTime * 1000);
 }
