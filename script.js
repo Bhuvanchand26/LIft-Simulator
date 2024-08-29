@@ -9,12 +9,9 @@ start.addEventListener("click", function () {
     alert("Please enter valid numbers for floors and lifts.");
     return;
   }
-
-  // Check if only floor 0 is present or only one lift
   if (floors === 0) {
     alert("for floor 0, No lift is required ");
     return;
-
   }
   container.innerHTML = "";
   initializeBuilding(floors, lifts, container);
@@ -27,7 +24,7 @@ let floorServiced = [];
 
 function initializeBuilding(floors, lifts, container) {
   // Initialize the building with floors and lifts
-  for (let i = floors; i >= 0; i--) { // Start from floor 0
+  for (let i = floors; i >= 0; i--) {
     const floorDiv = document.createElement("div");
     floorDiv.classList.add("floor");
     floorDiv.dataset.floor = i;
@@ -41,29 +38,29 @@ function initializeBuilding(floors, lifts, container) {
     `;
     floorDiv.appendChild(floorControls);
 
-    if (i === 0) { // Change from floor 1 to floor 0
+    if (i === 0) { 
       const liftsContainer = document.createElement("div");
       liftsContainer.classList.add("lifts-container");
       for (let j = 0; j < lifts; j++) {
         const liftDiv = document.createElement("div");
         liftDiv.classList.add("lift");
-        liftDiv.dataset.lift = j + 1; // as j starts from 0
-        liftDiv.dataset.currentFloor = 0; // Set current floor to 0
+        liftDiv.dataset.lift = j + 1; 
+        liftDiv.dataset.currentFloor = 0;
         liftDiv.innerHTML = `
           <div class="lift-door left-door"></div>
           <div class="lift-door right-door"></div>
         `;
         liftsContainer.appendChild(liftDiv);
-        liftsPositionArray.push(0); // All lifts start from the ground floor (0).
-        liftsAvailableArray.push(true); // All lifts start as available.
+        liftsPositionArray.push(0); 
+        liftsAvailableArray.push(true);
       }
       floorDiv.appendChild(liftsContainer);
     }
     container.appendChild(floorDiv);
   }
 
-  for (let i = 0; i <= floors; i++) { // Adjust to include floor 0
-    floorServiced[i] = false; // Lifts haven't serviced any floor.
+  for (let i = 0; i <= floors; i++) { 
+    floorServiced[i] = false;
   }
   document.querySelectorAll(".upBtn, .downBtn").forEach((button) => {
     button.addEventListener("click", function () {
@@ -83,13 +80,13 @@ function askForLift(requestedFloor) {
 
 function getaLift() {
   while (requestedLiftArray.length > 0) {
-    const requestedFloor = requestedLiftArray[0]; // Get the first requested floor
+    const requestedFloor = requestedLiftArray[0]; 
     const liftIndex = findNearestAvailableLift(requestedFloor);
     if (liftIndex !== -1) {
       moveLift(liftIndex, requestedFloor);
       requestedLiftArray.shift(); // Remove the processed request
     } else {
-      break; // No available lift, wait for one to become available
+      break; 
     }
   }
 }
@@ -118,23 +115,23 @@ function moveLift(from, to) {
   const distance = Math.abs(currentFloor - to);
   const travelTime = distance * 2; // 2 seconds per floor
 
-  liftsAvailableArray[from] = false; // Mark lift as busy
+  liftsAvailableArray[from] = false;
 
   liftElement.style.transition = `transform ${travelTime}s linear`;
-  liftElement.style.transform = `translateY(-${floorHeight * to}px)`; // Adjust for floor 0
+  liftElement.style.transform = `translateY(-${floorHeight * to}px)`;
 
   setTimeout(() => {
-    liftsPositionArray[from] = to; // Update lift position
+    liftsPositionArray[from] = to; 
     openLiftDoors(liftElement);
 
     setTimeout(() => {
       closeLiftDoors(liftElement);
       setTimeout(() => {
-        liftsAvailableArray[from] = true; // Mark lift as available
+        liftsAvailableArray[from] = true; 
         floorServiced[to] = false;
         getaLift();
       }, 2500);
-    }, 2500); // Doors stay open for 2.5 seconds
+    }, 2500);
   }, travelTime * 1000);
 }
 
