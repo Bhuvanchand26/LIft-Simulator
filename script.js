@@ -24,8 +24,8 @@ start.addEventListener("click", function () {
 let liftsPositionArray = [];
 let liftsAvailableArray = [];
 let requestedLiftArray = {
-  up: [], // Separate list for "up" requests
-  down: [], // Separate list for "down" requests
+  up: [], 
+  down: [], 
 };
 let floorServiced = {
   up: [],
@@ -34,11 +34,18 @@ let floorServiced = {
 
 function initializeBuilding(floors, lifts, container) {
   // Initialize the building with floors and lifts
+
+  const viewportWidth = window.innerWidth;
+  const calculatedWidth = 110 * lifts;
+
+
   for (let i = floors; i >= 0; i--) {
     const floorDiv = document.createElement("div");
     floorDiv.classList.add("floor");
     floorDiv.dataset.floor = i;
 
+    floorDiv.style.width = viewportWidth > calculatedWidth ? `${viewportWidth - 10}px` : `${calculatedWidth}px`;
+    
     const floorControls = document.createElement("div");
     floorControls.classList.add("controls-container");
     floorControls.innerHTML = `
@@ -51,6 +58,7 @@ function initializeBuilding(floors, lifts, container) {
     if (i === 0) {
       const liftsContainer = document.createElement("div");
       liftsContainer.classList.add("lifts-container");
+
       for (let j = 0; j < lifts; j++) {
         const liftDiv = document.createElement("div");
         liftDiv.classList.add("lift");
@@ -64,6 +72,7 @@ function initializeBuilding(floors, lifts, container) {
         liftsPositionArray.push(0);
         liftsAvailableArray.push(true);
       }
+
       floorDiv.appendChild(liftsContainer);
     }
     container.appendChild(floorDiv);
