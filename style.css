@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
+    overflow-x: hidden;
 }
 
 header {
@@ -79,7 +80,7 @@ header {
 }
 
 .floor {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -87,7 +88,8 @@ header {
     height: 100px;
     width: auto;
     position: relative;
-    width: 100%; 
+    min-width: 100%; 
+    
     
 }
 
@@ -125,7 +127,7 @@ header {
     left: 220px;
     display: flex;
     gap: 20px;
-    bottom: 0; 
+    bottom: 0;
 }
 
 .lift {
