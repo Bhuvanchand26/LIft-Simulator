@@ -16,15 +16,6 @@ header {
     font-size: 24px;
 }
 
-.flexbox-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-    padding: 20px;
-    border: 10px solid #ddd;
-    
-}
-
 .Instructions {
     flex: 1;
     padding-right: 20px;
@@ -66,8 +57,17 @@ header {
     background-color: #0056b3;
 }
 
-.simulator-Container {
+.flexbox-container {
+    display: flex;
+    justify-content: space-between;
     margin: 20px;
+    padding: 20px;
+    border: 10px solid #ddd;
+    
+}
+
+.simulator-Container {
+
     border: 2px solid #ccc;
     min-height: 600px;
     position: relative;
@@ -182,4 +182,8 @@ header {
     .simulator-Container {
         min-height: 500px;
     }
+    .flexbox-container{
+        flex-direction: column;
+    }
+    
 }
