@@ -5,7 +5,7 @@ start.addEventListener("click", function () {
   const lifts = parseInt(document.querySelector(".lift-input").value);
   const container = document.querySelector(".simulator-Container");
 
-  if (isNaN(floors) || isNaN(lifts) || floors < 0 || lifts < 1) {
+  if (isNaN(floors) || isNaN(lifts) || floors < 0 || lifts < 0) {
     alert("Please enter valid numbers for floors and lifts.");
     return;
   }
