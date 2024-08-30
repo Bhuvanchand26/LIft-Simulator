@@ -4,6 +4,7 @@ start.addEventListener("click", function () {
   const floors = parseInt(document.querySelector(".floor-input").value);
   const lifts = parseInt(document.querySelector(".lift-input").value);
   const container = document.querySelector(".simulator-Container");
+  const headContainer = document.querySelector(".flexbox-container");
 
   if (isNaN(floors) || isNaN(lifts) || floors < 0 || lifts < 0) {
     alert("Please enter valid numbers for floors and lifts.");
@@ -13,6 +14,10 @@ start.addEventListener("click", function () {
     alert("for floor 0, No lift is required ");
     return;
   }
+  headContainer.style.display = "none";
+  
+  container.style.display = "block"; 
+
   container.innerHTML = "";
   initializeBuilding(floors, lifts, container);
 });
