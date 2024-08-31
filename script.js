@@ -35,7 +35,7 @@ let floorServiced = {
 function initializeBuilding(floors, lifts, container) {
 
   const windowWidth = window.innerWidth;
-  const containerWidth = 110 * lifts;
+  const containerWidth = 120 * lifts;
 
   for (let i = floors; i >= 0; i--) {
     const floorDiv = document.createElement("div");
@@ -142,7 +142,7 @@ function moveLift(from, to, direction) {
   liftsAvailableArray[from] = false;
 
   liftElement.style.transition = `transform ${travelTime}s linear`;
-  liftElement.style.transform = `translateY(-${floorHeight * to}px)`;
+  liftElement.style.transform = `translate3d(0, -${floorHeight * to}px, 0)`;
 
   setTimeout(() => {
     liftsPositionArray[from] = to;

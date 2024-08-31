@@ -23,9 +23,9 @@
         <div class="inputs">
             <form id="input-form">
                 <p>Enter the number of floors</p>
-                <input type="number" placeholder="Number of floors" class="floor-input" min="1">
+                <input type="number" placeholder="Number of floors" class="floor-input" min="1" required step="1">
                 <p>Enter the number of lifts</p>
-                <input type="number" placeholder="Number of lifts" class="lift-input" min="1">
+                <input type="number" placeholder="Number of lifts" class="lift-input" min="1" required step="1">
             </form>
             <button id="start-button">Start</button>
         </div>
@@ -35,6 +35,8 @@
     </div>
     
   <script src="script.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
 </body>
 </html>
 

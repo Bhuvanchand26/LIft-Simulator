@@ -80,13 +80,15 @@ header {
 }
 
 .floor {
-    display: inline-flex;
+    display: -webkit-box;  /* For Safari*/
+    display: -ms-flexbox;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     border-bottom: 10px solid #ddd;
     height: 100px;
-    width: auto;
+    width: 100%;
     position: relative;
     min-width: 100%; 
 
@@ -139,6 +141,7 @@ header {
     align-items: center;
     overflow: hidden;
     transition: transform 0.5s ease;
+    transition: -webkit-transform 0.5s ease;
     border: 10px solid #ddd;
 }
 
