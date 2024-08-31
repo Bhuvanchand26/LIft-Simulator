@@ -42,7 +42,7 @@ function initializeBuilding(floors, lifts, container) {
     floorDiv.classList.add("floor");
     floorDiv.dataset.floor = i;
 
-    floorDiv.style.width = windowWidth > containerWidth ? `${windowWidth - 10}px` : `${containerWidth}px`;
+    floorDiv.style.width = windowWidth > containerWidth ? `${windowWidth - 10}px` : `${containerWidth * 1.2}px`;
     
     const floorControls = document.createElement("div");
     floorControls.classList.add("controls-container");
