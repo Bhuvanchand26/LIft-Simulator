@@ -33,18 +33,16 @@ let floorServiced = {
 };
 
 function initializeBuilding(floors, lifts, container) {
-  // Initialize the building with floors and lifts
 
-  const viewportWidth = window.innerWidth;
-  const calculatedWidth = 110 * lifts;
-
+  const windowWidth = window.innerWidth;
+  const containerWidth = 110 * lifts;
 
   for (let i = floors; i >= 0; i--) {
     const floorDiv = document.createElement("div");
     floorDiv.classList.add("floor");
     floorDiv.dataset.floor = i;
 
-    floorDiv.style.width = viewportWidth > calculatedWidth ? `${viewportWidth - 10}px` : `${calculatedWidth}px`;
+    floorDiv.style.width = windowWidth > containerWidth ? `${windowWidth - 10}px` : `${containerWidth}px`;
     
     const floorControls = document.createElement("div");
     floorControls.classList.add("controls-container");
@@ -83,7 +81,6 @@ function initializeBuilding(floors, lifts, container) {
     floorServiced.down[i] = false;
   }
 
-  // Attach event listeners for buttons
   document.querySelectorAll(".upBtn").forEach((button) => {
     button.addEventListener("click", function () {
       askForLift(parseInt(this.dataset.floor), "up");
@@ -98,11 +95,10 @@ function initializeBuilding(floors, lifts, container) {
 }
 
 function askForLift(requestedFloor, direction) {
-  // Check if the floor is already being serviced in the requested direction
   if (!floorServiced[direction][requestedFloor]) {
     requestedLiftArray[direction].push(requestedFloor);
     getaLift(direction);
-    floorServiced[direction][requestedFloor] = true; // Mark that a lift has been requested for this direction
+    floorServiced[direction][requestedFloor] = true; 
   }
 }
 
@@ -112,7 +108,7 @@ function getaLift(direction) {
     const liftIndex = findNearestAvailableLift(requestedFloor);
     if (liftIndex !== -1) {
       moveLift(liftIndex, requestedFloor, direction);
-      requestedLiftArray[direction].shift(); // Remove the processed request
+      requestedLiftArray[direction].shift(); 
     } else {
       break;
     }
@@ -141,7 +137,7 @@ function moveLift(from, to, direction) {
   const currentFloor = liftsPositionArray[from];
   const floorHeight = document.querySelector(".floor").offsetHeight;
   const distance = Math.abs(currentFloor - to);
-  const travelTime = distance * 2; // 2 seconds per floor
+  const travelTime = distance * 2; 
 
   liftsAvailableArray[from] = false;
 
@@ -157,7 +153,7 @@ function moveLift(from, to, direction) {
       setTimeout(() => {
         liftsAvailableArray[from] = true;
         floorServiced[direction][to] = false;
-        getaLift(direction); // Continue processing lift requests in the same direction
+        getaLift(direction);
       }, 2500);
     }, 2500);
   }, travelTime * 1000);

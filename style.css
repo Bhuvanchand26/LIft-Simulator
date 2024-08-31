@@ -132,13 +132,14 @@ header {
 .lift {
     width: 80px;
     height: 90px;
-    background-color: #007bff;
+    background-color: #15b9ef;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
     transition: transform 0.5s ease;
+    border: 10px solid #ddd;
 }
 
 .lift-door {
@@ -164,7 +165,6 @@ header {
     transform: translateX(100%);
 }
 
-/* mobile version done, but have to make changes about the border */
 @media screen and (max-width: 600px) {
     .lift {
         width: 40px;
@@ -185,5 +185,13 @@ header {
     .flexbox-container{
         flex-direction: column;
     }
+
+    .controls-container{
+        flex-direction: column;
+    }
+    .controls-container button{
+        padding: 4px;
+    }
+
     
 }
