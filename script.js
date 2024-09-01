@@ -7,7 +7,7 @@ start.addEventListener("click", function () {
   const headContainer = document.querySelector(".flexbox-container");
 
   if (isNaN(floors) || isNaN(lifts) || floors < 0 || lifts < 0) {
-    alert("Please enter valid numbers for floors and lifts.");
+    alert("Please enter only valid positive numbers for floors and lifts.");
     return;
   }
   if (floors === 0) {
