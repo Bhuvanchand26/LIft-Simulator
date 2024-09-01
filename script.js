@@ -14,6 +14,9 @@ start.addEventListener("click", function () {
     alert("For floor 0, no lift is required.");
     return;
   }
+  if (lifts == 0){
+    alert("At least one lift is required.");
+  }
   headContainer.style.display = "none";
   container.style.display = "block";
 
