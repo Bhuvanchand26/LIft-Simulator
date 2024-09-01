@@ -16,6 +16,7 @@ start.addEventListener("click", function () {
   }
   if (lifts == 0){
     alert("At least one lift is required.");
+    return;
   }
   headContainer.style.display = "none";
   container.style.display = "block";
